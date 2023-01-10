@@ -4,9 +4,103 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Test</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+
+        #cardList {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 16.5%;
+            cursor: pointer;
+            background-color: gainsboro;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .card-link {
+            margin-top: 5px;
+            color: rgb(6, 119, 248);
+        }
+
+        @media only screen and (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+            .card {
+                width: 25%;
+            }
+        }
+
+        @media only screen and (max-width: 500px) {
+            .container {
+                width: 95%;
+            }
+            .card {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    Test Github Page
+    <div class="container">
+
+        <div id="cardList"></div>
+
+    </div>
 </body>
+
+<script>
+
+    var links = [
+        {name: 'Youtube', link: 'https://youtube.com'},
+        {name: 'Google', link: 'https://google.com'},
+        {name: 'Facebook', link: 'https://facebook.com'},
+        {name: 'Telegram', link: 'https://facebook.com'},
+        {name: 'Baidu', link: 'https://baidu.com'},
+    ]
+
+    function displayCard() {
+        var html = '';
+
+        for (let i = 0; i < links.length; i++) {
+            const link = links[i];
+            html += `
+                <div class="card" onclick="clickCard(${i})">
+                    <div class="card-title">${link.name}</div>
+                    <div class="card-link">${link.link}</div>
+                </div>
+            `;
+        }
+
+        var cardList = document.getElementById('cardList');
+        cardList.innerHTML = html;
+    }
+
+    displayCard();
+
+    function clickCard(i) {
+        window.open(links[i].link);
+    }
+
+</script>
 </html>
